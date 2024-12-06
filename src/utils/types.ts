@@ -14,6 +14,7 @@ export interface Room {
 }
 
 export interface Hotel {
+  id: string;
   name: string;
   address: Address;
   description: string;
@@ -21,4 +22,10 @@ export interface Hotel {
   pricePerNight: number;
   rating: number;
   rooms: Room[];
+}
+
+export interface City {
+  id: string;
+  city: string;
+  cityImgUrl: string;
 }

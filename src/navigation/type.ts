@@ -3,4 +3,7 @@ export type RootStackParamList = {
   Favorites: undefined;
   Reservations: undefined;
   Profile: undefined;
+  Main: { screen: "Hotels" };
+  Intro: undefined;
+  Search: undefined;
 };

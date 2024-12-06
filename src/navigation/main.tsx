@@ -3,12 +3,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import { RootStackParamList } from "./type";
-import HotelsScreen from "../screens/HotelsScreen/HotelsScreen";
-import FavoritesScreen from "../screens/FavoritesScreen/FavoritesScreen";
-import ReservationsScreen from "../screens/ReservationsScreen/ReservationsScreen";
-import ProfileScreen from "../screens/ProfileScreen/ProfileScreen";
+import HotelsScreen from "../screens/Hotels/HotelsScreen";
+import FavoritesScreen from "../screens/Favorites/FavoritesScreen";
+import ReservationsScreen from "../screens/Reservations/ReservationsScreen";
+import ProfileScreen from "../screens/Profile/ProfileScreen";
+import IntroductionScreen from "../screens/Intro/IntroductionScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_LIGHT } from "../utils/colors";
+import SearchScreen from "../screens/Search/SearchScreen";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -56,7 +58,13 @@ function BottomTabNavigation() {
 }
 
 function RootNavigator() {
-  return <Stack.Navigator screenOptions={{ headerShown: false, animation: "none" }}></Stack.Navigator>;
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false, animation: "none" }}>
+      <Stack.Screen name="Intro" component={IntroductionScreen} />
+      <Stack.Screen name="Main" component={BottomTabNavigation} />
+      <Stack.Screen name="Search" component={SearchScreen} />
+    </Stack.Navigator>
+  );
 }
 
 export default function AppNavigation() {
