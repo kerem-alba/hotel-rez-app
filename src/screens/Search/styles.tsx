@@ -23,25 +23,22 @@ export const styles = StyleSheet.create({
     margin: 10,
     flex: 1,
     borderRadius: 10,
-    height: 300,
   },
   areasContainer: {
     backgroundColor: SECONDARY_COLOR,
-    margin: 10,
+    margin: 5,
     flex: 1,
-    borderRadius: 10,
   },
   hotelsContainer: {
     backgroundColor: SECONDARY_COLOR,
     margin: 10,
     flex: 1,
-    borderRadius: 10,
   },
   renderItem: {
     flexDirection: "row",
     alignItems: "center",
-    padding: 10,
-    margin: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 16,
   },
   textContainer: {
     marginLeft: 10,

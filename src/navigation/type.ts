@@ -6,4 +6,5 @@ export type RootStackParamList = {
   Main: { screen: "Hotels" };
   Intro: undefined;
   Search: undefined;
+  HotelDetails: { id: string };
 };

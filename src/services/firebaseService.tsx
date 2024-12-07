@@ -53,7 +53,7 @@ export const fetchCities = async () => {
 export const fetchAreasByPrefix = async (prefix: string): Promise<{ id: string; city: string; country: string }[]> => {
   try {
     const result: { id: string; city: string; country: string }[] = [];
-    const cityQuery = query(collection(db, "hotels"), orderBy("address.city"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(3));
+    const cityQuery = query(collection(db, "hotels"), orderBy("address.city"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(4));
     const citySnapshot = await getDocs(cityQuery);
 
     citySnapshot.docs.forEach((doc) => {
@@ -92,7 +92,7 @@ export const fetchHotelsByPrefix = async (prefix: string): Promise<{ id: string;
   try {
     const result: { id: string; name: string; city: string; country: string }[] = [];
 
-    const hotelQuery = query(collection(db, "hotels"), orderBy("name"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(3));
+    const hotelQuery = query(collection(db, "hotels"), orderBy("name"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(4));
 
     const hotelSnapshot = await getDocs(hotelQuery);
 
@@ -105,6 +105,16 @@ export const fetchHotelsByPrefix = async (prefix: string): Promise<{ id: string;
     return result;
   } catch (error) {
     console.error("Error fetching hotels by prefix:", error);
+    throw error;
+  }
+};
+
+export const fetchHotelById = async (id: string): Promise<Hotel> => {
+  try {
+    const hotelDoc = await getDocs(query(collection(db, "hotels"), where("__name__", "==", id)));
+    return hotelDoc.docs[0].data() as Hotel;
+  } catch (error) {
+    console.error("Error fetching hotel by id:", error);
     throw error;
   }
 };

@@ -13,7 +13,7 @@ type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
 export default function HotelCard({ hotel }: { hotel: Hotel }) {
   const navigation = useNavigation<NavigationProps>();
   return (
-    <Pressable style={styles.container} onPress={() => console.log("navigate to details")}>
+    <Pressable style={styles.container} onPress={() => navigation.navigate("HotelDetails", { id: hotel.id })}>
       <ImageBackground source={{ uri: hotel.imageUrls[0] }} style={styles.image} resizeMode="cover">
         <BlurView style={styles.textOverlay} intensity={30} tint="dark" experimentalBlurMethod="dimezisBlurView">
           <Text style={styles.hotelName}>{hotel.name}</Text>
