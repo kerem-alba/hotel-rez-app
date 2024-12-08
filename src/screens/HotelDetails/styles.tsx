@@ -1,12 +1,20 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { BACKGROUND_COLOR, BACKGROUND_COLOR_LIGHT, SECONDARY_COLOR, TEXT_COLOR, TEXT_LIGHT } from "../../utils/colors";
+import {
+  BACKGROUND_COLOR,
+  BACKGROUND_COLOR_CONTRAST,
+  BACKGROUND_COLOR_DARKER,
+  BACKGROUND_COLOR_LIGHTER,
+  PRIMARY_COLOR,
+  SECONDARY_COLOR,
+  TEXT_COLOR,
+  TEXT_CONTRAST,
+} from "../../utils/colors";
 
 const { height, width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
     backgroundColor: BACKGROUND_COLOR,
   },
   scrollView: {
@@ -22,13 +30,12 @@ export const styles = StyleSheet.create({
     height: 40,
     backgroundColor: "transparent",
     position: "absolute",
-    top: 10,
+    top: 40,
     zIndex: 1,
     gap: width - 72,
   },
   imageContainer: {
     height: width * 0.8,
-    backgroundColor: SECONDARY_COLOR,
     alignItems: "center",
   },
   image: {
@@ -44,22 +51,22 @@ export const styles = StyleSheet.create({
     width: 12,
     height: 12,
     borderRadius: 6,
-    backgroundColor: TEXT_LIGHT,
+    backgroundColor: TEXT_CONTRAST,
     margin: 5,
   },
   activeDot: {
     backgroundColor: TEXT_COLOR,
   },
   infoContainer: {
-    flex: 1,
     margin: 10,
-    borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: BACKGROUND_COLOR_LIGHT,
+    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    borderWidth: 1,
+    borderColor: BACKGROUND_COLOR_DARKER,
   },
   hotelName: {
     fontSize: 20,
-    color: TEXT_LIGHT,
+    color: TEXT_COLOR,
     paddingHorizontal: 10,
   },
   stars: {
@@ -83,7 +90,7 @@ export const styles = StyleSheet.create({
   },
   ratingText: {
     position: "absolute",
-    color: TEXT_LIGHT,
+    color: TEXT_CONTRAST,
     fontSize: 16,
     fontWeight: "bold",
     top: 20,
@@ -91,12 +98,49 @@ export const styles = StyleSheet.create({
   adressContainer: {
     flexDirection: "row",
     margin: 10,
-  },
-  adressTextContainer: {
-    paddingLeft: 10,
+    alignItems: "center",
   },
 
   adressText: {
-    color: TEXT_LIGHT,
+    color: TEXT_COLOR,
+  },
+  map: {
+    marginVertical: 10,
+    width: "100%",
+    height: 200,
+  },
+  descriptionContainer: {
+    margin: 10,
+    borderRadius: 10,
+    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    borderWidth: 1,
+    borderColor: BACKGROUND_COLOR_DARKER,
+  },
+  description: {
+    color: TEXT_COLOR,
+    padding: 10,
+    fontSize: 16,
+  },
+  footer: {
+    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    alignItems: "center",
+    justifyContent: "space-between",
+    flexDirection: "row",
+    height: 80,
+    paddingHorizontal: 14,
+  },
+  selectRoomButton: {
+    backgroundColor: PRIMARY_COLOR,
+    padding: 5,
+    borderRadius: 10,
+  },
+  bookText: {
+    color: TEXT_COLOR,
+    fontSize: 20,
+  },
+  priceText: {
+    color: SECONDARY_COLOR,
+    fontWeight: "bold",
+    fontSize: 20,
   },
 });

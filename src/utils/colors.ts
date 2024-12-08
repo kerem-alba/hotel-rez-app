@@ -1,6 +1,8 @@
-export const PRIMARY_COLOR = "#2192FF"; //blue
-export const SECONDARY_COLOR = "#F1F1F1"; //white
-export const BACKGROUND_COLOR = "#151718"; //black
-export const BACKGROUND_COLOR_LIGHT = "#222228"; //dark grey
-export const TEXT_COLOR = "#26303A"; //Gray
-export const TEXT_LIGHT = "#d3d3d3"; //light grey
+export const PRIMARY_COLOR = "#00ADB5"; //lightblue
+export const SECONDARY_COLOR = "#393E46"; //darkgray
+export const BACKGROUND_COLOR = "#EEEEEE"; //white
+export const BACKGROUND_COLOR_LIGHTER = "#FCFCFC"; //white
+export const BACKGROUND_COLOR_DARKER = "#CECECE"; //white
+export const BACKGROUND_COLOR_CONTRAST = "#393E46"; //darkgray
+export const TEXT_COLOR = "#222831"; //black
+export const TEXT_CONTRAST = "#EEEEEE"; //white

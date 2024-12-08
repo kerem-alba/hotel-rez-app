@@ -10,7 +10,7 @@ import ProfileScreen from "../screens/Profile/ProfileScreen";
 import IntroductionScreen from "../screens/Intro/IntroductionScreen";
 import HotelDetailsScreen from "../screens/HotelDetails/HotelDetailsScreen";
 import { Ionicons } from "@expo/vector-icons";
-import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_LIGHT } from "../utils/colors";
+import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../utils/colors";
 import SearchScreen from "../screens/Search/SearchScreen";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
@@ -47,7 +47,7 @@ function BottomTabNavigation() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: PRIMARY_COLOR,
-        tabBarInactiveTintColor: TEXT_LIGHT,
+        tabBarInactiveTintColor: SECONDARY_COLOR,
       })}
     >
       <Tab.Screen name="Hotels" component={HotelsScreen} options={{ tabBarLabel: "Oteller" }} />

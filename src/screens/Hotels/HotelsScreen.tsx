@@ -7,6 +7,8 @@ import HotelList from "../../components/HotelList/HotelList";
 import { fetchHotels, fetchCities } from "../../services/firebaseService";
 import { Hotel, City } from "../../utils/types";
 import CityList from "../../components/CityList/CityList";
+import { LinearGradient } from "expo-linear-gradient";
+import { PRIMARY_COLOR } from "../../utils/colors";
 
 export default function HotelsScreen() {
   const [hotels, setHotels] = useState<Hotel[]>([]);
@@ -35,14 +37,16 @@ export default function HotelsScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerOne}>hotel</Text>
-        <Text style={styles.headerTwo}>rez</Text>
-      </View>
-      <StatusBar style="light" />
-      <SearchBox />
-      <HotelList hotels={hotels} />
-      <CityList cities={cities} />
+      <StatusBar style="dark" />
+      <LinearGradient style={styles.container} colors={["transparent", PRIMARY_COLOR]} end={[0.5, 1]}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerOne}>hotel</Text>
+          <Text style={styles.headerTwo}>rez</Text>
+        </View>
+        <SearchBox />
+        <HotelList hotels={hotels} />
+        <CityList cities={cities} />
+      </LinearGradient>
     </ScrollView>
   );
 }

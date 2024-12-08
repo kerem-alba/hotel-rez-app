@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_LIGHT } from "../../utils/colors";
+import { BACKGROUND_COLOR, BACKGROUND_COLOR_CONTRAST, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../../utils/colors";
 
 const { width } = Dimensions.get("window");
 
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   textOverlay: {
     height: 70,
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: BACKGROUND_COLOR_CONTRAST,
     opacity: 0.7,
     paddingLeft: 10,
     top: 130,
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
   hotelName: {
     fontSize: 16,
     fontWeight: "bold",
-    color: TEXT_LIGHT,
+    color: TEXT_CONTRAST,
   },
   bottom: {
     flexDirection: "row",
@@ -40,7 +40,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     marginTop: 5,
-    color: TEXT_LIGHT,
+    color: TEXT_CONTRAST,
   },
   price: {
     paddingTop: 10,
