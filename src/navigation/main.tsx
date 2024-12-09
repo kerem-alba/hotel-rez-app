@@ -9,6 +9,9 @@ import ReservationsScreen from "../screens/Reservations/ReservationsScreen";
 import ProfileScreen from "../screens/Profile/ProfileScreen";
 import IntroductionScreen from "../screens/Intro/IntroductionScreen";
 import HotelDetailsScreen from "../screens/HotelDetails/HotelDetailsScreen";
+import RoomsScreen from "../screens/Rooms/RoomsScreen";
+import SearchResultsScreen from "../screens/SearchResults/SearchResultsScreen";
+import CityResultsScreen from "../screens/SearchResults/CityResultsScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../utils/colors";
 import SearchScreen from "../screens/Search/SearchScreen";
@@ -65,6 +68,9 @@ function RootNavigator() {
       <Stack.Screen name="Main" component={BottomTabNavigation} />
       <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="HotelDetails" component={HotelDetailsScreen} />
+      <Stack.Screen name="Rooms" component={RoomsScreen} />
+      <Stack.Screen name="SearchResults" component={SearchResultsScreen} />
+      <Stack.Screen name="CityResults" component={CityResultsScreen} />
     </Stack.Navigator>
   );
 }

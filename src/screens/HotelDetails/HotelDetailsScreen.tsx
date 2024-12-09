@@ -1,11 +1,10 @@
-import { View, Text, FlatList, Image, Dimensions, ScrollView, Pressable, Linking } from "react-native";
-import React, { useState, useEffect } from "react";
+import { View, Text, FlatList, Image, Dimensions, ScrollView, Pressable } from "react-native";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigation/type";
 import { fetchHotelById } from "../../services/firebaseService";
-import { Hotel } from "../../utils/types";
 import Loading from "../../components/Loading/Loading";
 import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
@@ -13,7 +12,7 @@ import MapView, { Marker } from "react-native-maps";
 import { useQuery } from "@tanstack/react-query";
 
 type RouteProps = RouteProp<RootStackParamList, "HotelDetails">;
-type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
+type NavigationProps = StackNavigationProp<RootStackParamList, "HotelDetails">;
 
 const { width } = Dimensions.get("window");
 
@@ -25,7 +24,7 @@ export default function HotelDetailsScreen() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const { data, isPending, error, isSuccess, isError, isLoading, refetch } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ["HotelDetails", id],
     queryFn: () => fetchHotelById(id),
   });
@@ -34,6 +33,11 @@ export default function HotelDetailsScreen() {
     const offsetX = event.nativeEvent.contentOffset.x;
     const index = Math.round(offsetX / width);
     setCurrentIndex(index);
+  };
+
+  const handlePress = () => {
+    data && navigation.navigate("Rooms", { data });
+    console.log("Rooms");
   };
 
   return (
@@ -103,14 +107,15 @@ export default function HotelDetailsScreen() {
               </View>
             </View>
             <View style={styles.descriptionContainer}>
-              <Text style={styles.hotelName}>About data</Text>
+              <Text style={styles.hotelName}>Otel hakkında</Text>
               <Text style={styles.description}>{data?.description}</Text>
             </View>
           </ScrollView>
           <View style={styles.footer}>
             <Text style={styles.priceText}>USD {data?.pricePerNight}</Text>
-            <Pressable style={styles.selectRoomButton}>
-              <Text style={styles.bookText}>Select Room</Text>
+            <Text style={styles.priceSubText}>başlayan fiyatlarla</Text>
+            <Pressable style={styles.selectRoomButton} onPress={handlePress}>
+              <Text style={styles.bookText}>Oda Seçimi</Text>
             </Pressable>
           </View>
         </>

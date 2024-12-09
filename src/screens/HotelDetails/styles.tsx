@@ -32,7 +32,8 @@ export const styles = StyleSheet.create({
     position: "absolute",
     top: 40,
     zIndex: 1,
-    gap: width - 72,
+    gap: width - 85,
+    paddingHorizontal: 10,
   },
   imageContainer: {
     height: width * 0.8,
@@ -111,6 +112,7 @@ export const styles = StyleSheet.create({
   },
   descriptionContainer: {
     margin: 10,
+    paddingVertical: 10,
     borderRadius: 10,
     backgroundColor: BACKGROUND_COLOR_LIGHTER,
     borderWidth: 1,
@@ -122,25 +124,34 @@ export const styles = StyleSheet.create({
     fontSize: 16,
   },
   footer: {
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
-    alignItems: "center",
+    backgroundColor: BACKGROUND_COLOR,
     justifyContent: "space-between",
     flexDirection: "row",
-    height: 80,
+    height: 70,
     paddingHorizontal: 14,
+    padding: 10,
   },
   selectRoomButton: {
     backgroundColor: PRIMARY_COLOR,
-    padding: 5,
+    padding: 10,
     borderRadius: 10,
+    justifyContent: "center",
+    height: 45,
   },
   bookText: {
     color: TEXT_COLOR,
-    fontSize: 20,
+    fontSize: 16,
   },
   priceText: {
     color: SECONDARY_COLOR,
     fontWeight: "bold",
     fontSize: 20,
+  },
+  priceSubText: {
+    color: TEXT_COLOR,
+    fontSize: 16,
+    position: "absolute",
+    bottom: 14,
+    left: 14,
   },
 });

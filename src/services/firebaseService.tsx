@@ -118,3 +118,17 @@ export const fetchHotelById = async (id: string): Promise<Hotel> => {
     throw error;
   }
 };
+
+export const fetchHotelsByCity = async (city: string): Promise<Hotel[]> => {
+  try {
+    const hotelsQuery = query(collection(db, "hotels"), where("address.city", "==", city), limit(10));
+    const querySnapshot = await getDocs(hotelsQuery);
+    return querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Hotel[];
+  } catch (error) {
+    console.error("Error fetching hotels by city:", error);
+    throw error;
+  }
+};

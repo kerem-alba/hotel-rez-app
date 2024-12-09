@@ -1,3 +1,5 @@
+import { Hotel } from "../utils/types";
+
 export type RootStackParamList = {
   Hotels: undefined;
   Favorites: undefined;
@@ -7,4 +9,7 @@ export type RootStackParamList = {
   Intro: undefined;
   Search: undefined;
   HotelDetails: { id: string };
+  Rooms: { data: Hotel };
+  SearchResults: { data: Hotel };
+  CityResults: { city: string };
 };
