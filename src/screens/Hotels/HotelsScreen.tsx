@@ -9,6 +9,7 @@ import { Hotel, City } from "../../utils/types";
 import CityList from "../../components/CityList/CityList";
 import { LinearGradient } from "expo-linear-gradient";
 import { PRIMARY_COLOR } from "../../utils/colors";
+import CompanyName from "../../components/CompanyName/CompanyName";
 
 export default function HotelsScreen() {
   const [hotels, setHotels] = useState<Hotel[]>([]);
@@ -39,10 +40,8 @@ export default function HotelsScreen() {
     <ScrollView style={styles.container}>
       <StatusBar style="dark" />
       <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
-        <View style={styles.headerContainer}>
-          <Text style={styles.headerOne}>hotel</Text>
-          <Text style={styles.headerTwo}>rez</Text>
-        </View>
+        <CompanyName />
+
         <SearchBox />
         <HotelList hotels={hotels} />
         <CityList cities={cities} />

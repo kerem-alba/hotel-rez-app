@@ -18,20 +18,4 @@ export const styles = StyleSheet.create({
     padding: 8,
     flex: 1,
   },
-  header: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderRadius: 10,
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
-    borderWidth: 1,
-    borderColor: BACKGROUND_COLOR_DARKER,
-    padding: 10,
-    marginTop: 30,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: TEXT_COLOR,
-    marginLeft: width * 0.25,
-  },
 });

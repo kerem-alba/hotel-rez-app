@@ -11,6 +11,7 @@ import { styles } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
+import BackAndTitleHeader from "../../components/Headers/BackAndTitleHeader";
 
 type RouteProps = RouteProp<RootStackParamList, "CityResults">;
 type NavigationProps = StackNavigationProp<RootStackParamList, "Rooms">;
@@ -33,12 +34,7 @@ export default function CityResultsScreen() {
         <Loading />
       ) : (
         <View>
-          <View style={styles.header}>
-            <Pressable onPress={() => navigation.goBack()}>
-              <Ionicons name="arrow-back" size={32} color="BLACK" />
-            </Pressable>
-            <Text style={styles.text}>{city}</Text>
-          </View>
+          <BackAndTitleHeader title={city} />
           <View>
             <HotelListVertical hotels={data as Hotel[]} />
           </View>

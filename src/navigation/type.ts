@@ -12,4 +12,5 @@ export type RootStackParamList = {
   Rooms: { data: Hotel };
   SearchResults: { data: Hotel };
   CityResults: { city: string };
+  Register: undefined;
 };

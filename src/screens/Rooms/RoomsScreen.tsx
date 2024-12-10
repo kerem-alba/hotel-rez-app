@@ -3,26 +3,17 @@ import React from "react";
 import { styles } from "./styles";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigation/type";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
+import BackAndTitleHeader from "../../components/Headers/BackAndTitleHeader";
 
 type RouteProps = RouteProp<RootStackParamList, "Rooms">;
-type NavigationProps = StackNavigationProp<RootStackParamList, "Rooms">;
 
 export default function RoomsScreen() {
   const route = useRoute<RouteProps>();
-  const navigation = useNavigation<NavigationProps>();
 
   const { data } = route.params;
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <Ionicons name="arrow-back" size={32} color="BLACK" />
-        </Pressable>
-        <Text style={styles.headerText}>{data.name}</Text>
-      </View>
+      <BackAndTitleHeader title={data.name} />
       <FlatList
         data={data.rooms}
         keyExtractor={(item, index) => index.toString()}
