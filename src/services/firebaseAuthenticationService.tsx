@@ -1,8 +1,11 @@
-import auth from "@react-native-firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { firebaseApp } from "../config/firebaseConfig";
+
+const auth = getAuth(firebaseApp);
 
 export const registerWithEmail = async (email: string, password: string) => {
   try {
-    const userCredential = await auth().createUserWithEmailAndPassword(email, password);
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     return userCredential.user;
   } catch (error) {
     console.error("Error registering with email:", error);
@@ -12,7 +15,7 @@ export const registerWithEmail = async (email: string, password: string) => {
 
 export const loginWithEmail = async (email: string, password: string) => {
   try {
-    const userCredential = await auth().signInWithEmailAndPassword(email, password);
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
     return userCredential.user;
   } catch (error) {
     console.error("Error logging in with email:", error);
@@ -22,7 +25,7 @@ export const loginWithEmail = async (email: string, password: string) => {
 
 export const logout = async () => {
   try {
-    await auth().signOut();
+    await signOut(auth);
   } catch (error) {
     console.error("Error logging out:", error);
     throw error;
