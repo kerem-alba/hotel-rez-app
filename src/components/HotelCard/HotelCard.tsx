@@ -6,7 +6,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/type";
 import { styles } from "./styles";
 import { Hotel } from "../../utils/types";
-import Entypo from "@expo/vector-icons/Entypo";
+import { Ionicons } from "@expo/vector-icons";
 
 type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
 
@@ -15,11 +15,20 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
   return (
     <Pressable style={styles.container} onPress={() => navigation.navigate("HotelDetails", { id: hotel.id })}>
       <ImageBackground source={{ uri: hotel.imageUrls[0] }} style={styles.image} resizeMode="cover">
+        <BlurView style={styles.heartOverlay} intensity={30} tint="dark" experimentalBlurMethod="dimezisBlurView">
+          <Ionicons name="heart-outline" size={24} color="white" />
+        </BlurView>
+
         <BlurView style={styles.textOverlay} intensity={30} tint="dark" experimentalBlurMethod="dimezisBlurView">
           <Text style={styles.hotelName}>{hotel.name}</Text>
+          <View style={styles.iconContainer}>
+            <Ionicons name="bookmark" size={50} style={styles.bookmark} />
+            <Text style={styles.ratingText}>{hotel.rating}</Text>
+          </View>
           <View style={styles.bottom}>
             <Text style={styles.city}>{hotel.address.city}</Text>
-            <Text style={styles.price}>{hotel.pricePerNight} USD</Text>
+            <Text style={styles.price}>$ {hotel.pricePerNight} </Text>
+            <Text style={styles.priceText}>/night</Text>
           </View>
         </BlurView>
       </ImageBackground>

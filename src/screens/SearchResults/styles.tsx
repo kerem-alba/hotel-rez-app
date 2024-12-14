@@ -18,4 +18,7 @@ export const styles = StyleSheet.create({
     padding: 8,
     flex: 1,
   },
+  hotelListContainer: {
+    gap: 18,
+  },
 });

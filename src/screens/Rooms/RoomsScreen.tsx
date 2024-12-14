@@ -30,7 +30,7 @@ export default function RoomsScreen() {
             />
             <View style={styles.bottom}>
               <Text style={styles.summary}>1 Gece, 1 Oda, 2 Yetişkin için toplam</Text>
-              <Text style={styles.price}>{data.pricePerNight} USD</Text>
+              <Text style={styles.price}>{data.pricePerNight} $</Text>
             </View>
             <Pressable>
               <Text style={styles.reservationButton}>Rezervasyon Yap</Text>

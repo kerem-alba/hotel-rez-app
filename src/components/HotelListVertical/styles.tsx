@@ -5,10 +5,4 @@ export const styles = StyleSheet.create({
   container: {
     paddingTop: 20,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: TEXT_COLOR,
-    padding: 10,
-  },
 });

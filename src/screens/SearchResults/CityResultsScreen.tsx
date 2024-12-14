@@ -35,7 +35,7 @@ export default function CityResultsScreen() {
       ) : (
         <View>
           <BackAndTitleHeader title={city} />
-          <View>
+          <View style={styles.hotelListContainer}>
             <HotelListVertical hotels={data as Hotel[]} />
           </View>
         </View>

@@ -39,9 +39,8 @@ export default function HotelsScreen() {
   return (
     <ScrollView style={styles.container}>
       <StatusBar style="dark" />
-      <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
+      <LinearGradient style={styles.container} colors={["transparent", PRIMARY_COLOR]} end={[0.5, 1]}>
         <CompanyName />
-
         <SearchBox />
         <HotelList hotels={hotels} />
         <CityList cities={cities} />

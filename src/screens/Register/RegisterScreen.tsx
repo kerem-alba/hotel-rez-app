@@ -24,7 +24,7 @@ export default function RegisterScreen() {
     try {
       const user = await registerWithEmail(email, password);
       console.log("User registered:", user);
-      navigation.navigate("Hotels");
+      navigation.navigate("Main", { screen: "Hotels" });
     } catch (error) {
       console.error("Registration error:", error);
     }

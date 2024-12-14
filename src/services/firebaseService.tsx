@@ -1,6 +1,22 @@
-import { getFirestore, collection, addDoc, getDocs, query, limit, where, orderBy, startAt, endAt } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  query,
+  limit,
+  where,
+  orderBy,
+  startAt,
+  endAt,
+  arrayUnion,
+  setDoc,
+  doc,
+} from "firebase/firestore";
 import { firebaseApp } from "../config/firebaseConfig";
 import { Hotel } from "../utils/types";
+import { useUserStore } from "../stores/userStore";
 
 const db = getFirestore(firebaseApp);
 
@@ -129,6 +145,70 @@ export const fetchHotelsByCity = async (city: string): Promise<Hotel[]> => {
     })) as Hotel[];
   } catch (error) {
     console.error("Error fetching hotels by city:", error);
+    throw error;
+  }
+};
+
+export const addUserFavorite = async (userId: string, hotelId: string) => {
+  try {
+    const { favorites, setFavorites } = useUserStore.getState();
+
+    // Firestore işlemleri
+    const favoritesQuery = query(collection(db, "favorites"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(favoritesQuery);
+
+    if (!querySnapshot.empty) {
+      const favoriteDoc = querySnapshot.docs[0];
+      const favoriteDocRef = doc(db, "favorites", favoriteDoc.id);
+      await updateDoc(favoriteDocRef, {
+        hotels: arrayUnion(hotelId),
+      });
+    } else {
+      await setDoc(doc(collection(db, "favorites")), {
+        userId,
+        hotels: [hotelId],
+      });
+    }
+
+    // Favoriler güncellendiğinde store'da da güncelle
+    setFavorites([...favorites, hotelId]);
+    console.log("Hotel added to favorites and Zustand updated.");
+  } catch (error) {
+    console.error("Error adding user favorite:", error);
+    throw error;
+  }
+};
+export const fetchUserFavorites = async (userId: string): Promise<string[]> => {
+  try {
+    const favoritesQuery = query(collection(db, "favorites"), where("userId", "==", userId), limit(10));
+    const querySnapshot = await getDocs(favoritesQuery);
+
+    const hotelIds = querySnapshot.docs.flatMap((doc) => {
+      const data = doc.data();
+      return data.hotels || [];
+    });
+
+    return hotelIds;
+  } catch (error) {
+    console.error("Error fetching user favorites:", error);
+    throw error;
+  }
+};
+
+export const fetchHotelsByIds = async (ids: string[]): Promise<Hotel[]> => {
+  if (ids.length === 0) {
+    console.log("No hotel IDs provided. Returning an empty array.");
+    return [];
+  }
+  try {
+    const hotelsQuery = query(collection(db, "hotels"), where("__name__", "in", ids));
+    const querySnapshot = await getDocs(hotelsQuery);
+    return querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Hotel[];
+  } catch (error) {
+    console.error("Error fetching hotels by ids:", error);
     throw error;
   }
 };

@@ -6,3 +6,4 @@ export const BACKGROUND_COLOR_DARKER = "#CECECE"; //white
 export const BACKGROUND_COLOR_CONTRAST = "#393E46"; //darkgray
 export const TEXT_COLOR = "#222831"; //black
 export const TEXT_CONTRAST = "#EEEEEE"; //white
+export const GREEN = "#228B22"; //green

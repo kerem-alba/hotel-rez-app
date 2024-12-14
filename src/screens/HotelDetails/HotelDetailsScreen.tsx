@@ -10,6 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { styles } from "./styles";
 import MapView, { Marker } from "react-native-maps";
 import { useQuery } from "@tanstack/react-query";
+import HotelFacilities from "../../components/FakeDescription/HotelFacilities";
 
 type RouteProps = RouteProp<RootStackParamList, "HotelDetails">;
 type NavigationProps = StackNavigationProp<RootStackParamList, "HotelDetails">;
@@ -110,9 +111,11 @@ export default function HotelDetailsScreen() {
               <Text style={styles.hotelName}>Otel hakkında</Text>
               <Text style={styles.description}>{data?.description}</Text>
             </View>
+
+            <HotelFacilities />
           </ScrollView>
           <View style={styles.footer}>
-            <Text style={styles.priceText}>USD {data?.pricePerNight}</Text>
+            <Text style={styles.priceText}>$ {data?.pricePerNight}</Text>
             <Text style={styles.priceSubText}>başlayan fiyatlarla</Text>
             <Pressable style={styles.selectRoomButton} onPress={handlePress}>
               <Text style={styles.bookText}>Oda Seçimi</Text>
