@@ -13,6 +13,7 @@ import {
   arrayUnion,
   setDoc,
   doc,
+  arrayRemove,
 } from "firebase/firestore";
 import { firebaseApp } from "../config/firebaseConfig";
 import { Hotel } from "../utils/types";
@@ -47,6 +48,8 @@ export const fetchHotels = async () => {
 export const fetchCities = async () => {
   try {
     const result: { id: string; city: string; cityImgUrl: string }[] = [];
+    const uniqueCities = new Set<string>(); // Benzersiz şehirleri tutmak için Set
+
     const citiesQuery = query(collection(db, "hotels"), orderBy("address.city"), limit(10));
     const citiesSnapshot = await getDocs(citiesQuery);
 
@@ -54,12 +57,13 @@ export const fetchCities = async () => {
       const data = doc.data();
       const city = data?.address?.city;
       const cityImgUrl = data?.address?.cityImgUrl;
-
-      if (city && cityImgUrl) {
+      if (city && cityImgUrl && !uniqueCities.has(city)) {
+        uniqueCities.add(city);
         result.push({ id: doc.id, city, cityImgUrl });
       }
     });
-    return result;
+
+    return result.sort(() => Math.random() - 0.5);
   } catch (error) {
     console.error("Error fetching cities: ", error);
     throw error;
@@ -178,6 +182,31 @@ export const addUserFavorite = async (userId: string, hotelId: string) => {
     throw error;
   }
 };
+
+export const removeUserFavorite = async (userId: string, hotelId: string) => {
+  try {
+    const { favorites, setFavorites } = useUserStore.getState();
+
+    const favoritesQuery = query(collection(db, "favorites"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(favoritesQuery);
+
+    if (!querySnapshot.empty) {
+      const favoriteDoc = querySnapshot.docs[0];
+      const favoriteDocRef = doc(db, "favorites", favoriteDoc.id);
+      await updateDoc(favoriteDocRef, {
+        hotels: arrayRemove(hotelId),
+      });
+
+      // Favoriler güncellendiğinde store'da da güncelle
+      setFavorites(favorites.filter((id) => id !== hotelId));
+      console.log("Hotel removed from favorites and Zustand updated.");
+    }
+  } catch (error) {
+    console.error("Error removing user favorite:", error);
+    throw error;
+  }
+};
+
 export const fetchUserFavorites = async (userId: string): Promise<string[]> => {
   try {
     const favoritesQuery = query(collection(db, "favorites"), where("userId", "==", userId), limit(10));

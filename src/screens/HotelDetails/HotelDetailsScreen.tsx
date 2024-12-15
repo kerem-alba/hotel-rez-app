@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Image, Dimensions, ScrollView, Pressable } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RouteProp, useRoute } from "@react-navigation/native";
@@ -11,6 +11,8 @@ import { styles } from "./styles";
 import MapView, { Marker } from "react-native-maps";
 import { useQuery } from "@tanstack/react-query";
 import HotelFacilities from "../../components/FakeDescription/HotelFacilities";
+import { useUserStore } from "../../stores/userStore";
+import { handlePressFavorite } from "../../services/favoriteService";
 
 type RouteProps = RouteProp<RootStackParamList, "HotelDetails">;
 type NavigationProps = StackNavigationProp<RootStackParamList, "HotelDetails">;
@@ -21,7 +23,16 @@ export default function HotelDetailsScreen() {
   const route = useRoute<RouteProps>();
   const navigation = useNavigation<NavigationProps>();
 
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const userId = useUserStore((state) => state.userId);
+  const userFavorites = useUserStore((state) => state.favorites);
+
   const { id } = route.params;
+
+  useEffect(() => {
+    setIsFavorite(userFavorites.includes(id));
+  }, [userFavorites]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -51,7 +62,9 @@ export default function HotelDetailsScreen() {
             <Pressable onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={32} color="white" />
             </Pressable>
-            <Ionicons name="heart-outline" size={32} color="white" />
+            <Pressable onPress={() => handlePressFavorite(userId, id, isFavorite)}>
+              <Ionicons name={isFavorite ? "heart" : "heart-outline"} size={32} color="white" />
+            </Pressable>
           </View>
           <ScrollView style={styles.scrollView} contentContainerStyle={styles.scrollContent}>
             <View style={styles.imageContainer}>

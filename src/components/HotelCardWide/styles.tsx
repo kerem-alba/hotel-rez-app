@@ -5,7 +5,7 @@ const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   container: {
-    width: width * 0.95,
+    width: width * 0.94,
     margin: 5,
     borderRadius: 10,
     overflow: "hidden",

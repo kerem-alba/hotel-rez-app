@@ -1,10 +1,13 @@
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, ScrollView } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { fetchUserFavorites, fetchHotelsByIds } from "../../services/firebaseService";
 import { Hotel } from "../../utils/types";
 import { useUserStore } from "../../stores/userStore";
 import HotelListVertical from "../../components/HotelListVertical/HotelListVertical";
-import HotelList from "../../components/HotelList/HotelList";
+import { styles } from "./styles";
+import { LinearGradient } from "expo-linear-gradient";
+import { PRIMARY_COLOR } from "../../utils/colors";
 
 export default function FavoritesScreen() {
   const [hotels, setHotels] = useState<Hotel[]>([]);
@@ -28,8 +31,13 @@ export default function FavoritesScreen() {
   }, [favorites, userId]);
 
   return (
-    <View>
-      <HotelListVertical hotels={hotels} />
-    </View>
+    <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
+      <View style={styles.header}>
+        <Text style={styles.text}>Favori otellerin</Text>
+      </View>
+      <View style={styles.hotels}>
+        <HotelListVertical hotels={hotels} />
+      </View>
+    </LinearGradient>
   );
 }

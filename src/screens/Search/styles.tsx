@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { BACKGROUND_COLOR, BACKGROUND_COLOR_CONTRAST, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../../utils/colors";
+import { BACKGROUND_COLOR, BACKGROUND_COLOR_CONTRAST, BACKGROUND_COLOR_DARKER, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,7 +14,7 @@ export const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: TEXT_CONTRAST,
+    borderColor: BACKGROUND_COLOR_DARKER,
     alignItems: "center",
     gap: 10,
   },

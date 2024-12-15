@@ -1,22 +1,35 @@
 import { View, Text, Pressable, ImageBackground } from "react-native";
 import { BlurView } from "expo-blur";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/type";
 import { styles } from "./styles";
 import { Hotel } from "../../utils/types";
 import { Ionicons } from "@expo/vector-icons";
+import { useUserStore } from "../../stores/userStore";
+import { handlePressFavorite } from "../../services/favoriteService";
 
 type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
 
 export default function HotelCard({ hotel }: { hotel: Hotel }) {
   const navigation = useNavigation<NavigationProps>();
+
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const userId = useUserStore((state) => state.userId);
+  const userFavorites = useUserStore((state) => state.favorites);
+
+  useEffect(() => {
+    setIsFavorite(userFavorites.includes(hotel.id));
+  }, [userFavorites]);
   return (
     <Pressable style={styles.container} onPress={() => navigation.navigate("HotelDetails", { id: hotel.id })}>
       <ImageBackground source={{ uri: hotel.imageUrls[0] }} style={styles.image} resizeMode="cover">
         <BlurView style={styles.heartOverlay} intensity={30} tint="dark" experimentalBlurMethod="dimezisBlurView">
-          <Ionicons name="heart-outline" size={24} color="white" />
+          <Pressable onPress={() => handlePressFavorite(userId, hotel.id, isFavorite)}>
+            <Ionicons name={isFavorite ? "heart" : "heart-outline"} size={24} color="white" />
+          </Pressable>
         </BlurView>
 
         <BlurView style={styles.textOverlay} intensity={30} tint="dark" experimentalBlurMethod="dimezisBlurView">

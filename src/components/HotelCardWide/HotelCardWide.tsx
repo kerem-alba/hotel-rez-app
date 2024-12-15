@@ -7,36 +7,29 @@ import { RootStackParamList } from "../../navigation/type";
 import { styles } from "./styles";
 import { Hotel } from "../../utils/types";
 import { Ionicons } from "@expo/vector-icons";
-import { addUserFavorite } from "../../services/firebaseService";
 import { useUserStore } from "../../stores/userStore";
+import { handlePressFavorite } from "../../services/favoriteService";
 
 type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
 
 export default function HotelCardWide({ hotel }: { hotel: Hotel }) {
   const navigation = useNavigation<NavigationProps>();
 
-  const userId = useUserStore((state) => state.userId);
+  const [isFavorite, setIsFavorite] = useState(false);
 
-  const handlePressFavorite = async () => {
-    if (!userId) {
-      console.log("Kullanıcı giriş yapmamış, favori eklenemiyor.");
-      return;
-    }
-    try {
-      console.log("Favoriye ekleniyor:", hotel.id, userId);
-      await addUserFavorite(userId, hotel.id);
-      console.log("Favoriye başarıyla eklendi:", hotel.id);
-    } catch (error) {
-      console.error("Favori eklenirken hata oluştu:", error);
-    }
-  };
+  const userId = useUserStore((state) => state.userId);
+  const userFavorites = useUserStore((state) => state.favorites);
+
+  useEffect(() => {
+    setIsFavorite(userFavorites.includes(hotel.id));
+  }, [userFavorites]);
 
   return (
     <Pressable style={styles.container} onPress={() => navigation.navigate("HotelDetails", { id: hotel.id })}>
       <ImageBackground source={{ uri: hotel.imageUrls[0] }} style={styles.image} resizeMode="cover">
         <BlurView style={styles.heartOverlay} intensity={30} tint="dark" experimentalBlurMethod="dimezisBlurView">
-          <Pressable onPress={handlePressFavorite}>
-            <Ionicons name="heart-outline" size={24} color="white" />
+          <Pressable onPress={() => handlePressFavorite(userId, hotel.id, isFavorite)}>
+            <Ionicons name={isFavorite ? "heart" : "heart-outline"} size={24} color="white" />
           </Pressable>
         </BlurView>
 
