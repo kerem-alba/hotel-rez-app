@@ -9,10 +9,8 @@ export const handlePressFavorite = async (userId: string | null, hotelId: string
   try {
     if (isFavorite) {
       await removeUserFavorite(userId, hotelId);
-      console.log("Favoriden başarıyla kaldırıldı:", hotelId);
     } else {
       await addUserFavorite(userId, hotelId);
-      console.log("Favoriye başarıyla eklendi:", hotelId);
     }
   } catch (error) {
     console.error("Favori işlemi sırasında hata oluştu:", error);

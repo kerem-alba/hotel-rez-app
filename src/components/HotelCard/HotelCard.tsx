@@ -15,10 +15,10 @@ type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
 export default function HotelCard({ hotel }: { hotel: Hotel }) {
   const navigation = useNavigation<NavigationProps>();
 
-  const [isFavorite, setIsFavorite] = useState(false);
-
   const userId = useUserStore((state) => state.userId);
   const userFavorites = useUserStore((state) => state.favorites);
+
+  const [isFavorite, setIsFavorite] = useState(userFavorites.includes(hotel.id));
 
   useEffect(() => {
     setIsFavorite(userFavorites.includes(hotel.id));

@@ -3,6 +3,7 @@ import {
   BACKGROUND_COLOR_CONTRAST,
   BACKGROUND_COLOR_DARKER,
   BACKGROUND_COLOR_LIGHTER,
+  PRIMARY_COLOR,
   SECONDARY_COLOR,
   TEXT_COLOR,
   TEXT_CONTRAST,
@@ -31,5 +32,32 @@ export const styles = StyleSheet.create({
   hotels: {
     marginHorizontal: 8,
     paddingBottom: 140,
+  },
+  icon: {
+    color: TEXT_CONTRAST,
+    alignSelf: "center",
+    marginTop: 60,
+    fontSize: 120,
+  },
+  noAccessContainer: {
+    marginTop: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginHorizontal: 23,
+  },
+
+  noAccessText: {
+    fontSize: 16,
+    color: TEXT_CONTRAST,
+    textAlign: "center",
+    marginTop: 20,
+  },
+
+  loginText: {
+    color: SECONDARY_COLOR,
+    fontWeight: "bold",
+    fontSize: 18,
+    textAlign: "center",
+    marginTop: 10,
   },
 });

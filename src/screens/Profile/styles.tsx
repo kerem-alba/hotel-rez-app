@@ -93,4 +93,63 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
   },
+
+  noAccessContainer: {
+    flex: 1,
+    marginVertical: 60,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  topContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingBottom: 20,
+  },
+  topIcon: {
+    color: PRIMARY_COLOR,
+    fontSize: 160,
+  },
+  userEmailText: {
+    color: TEXT_COLOR,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
+  profileContainer: {
+    marginHorizontal: 14,
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 8,
+    borderWidth: 2,
+    borderColor: BACKGROUND_COLOR_DARKER,
+    borderRadius: 10,
+    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+  },
+  subIcon: {
+    color: TEXT_COLOR,
+    fontSize: 30,
+    marginHorizontal: 10,
+  },
+  subtextContainer: {
+    flexDirection: "column",
+    flexShrink: 1,
+    width: "100%",
+    padding: 5,
+  },
+  subtitle: {
+    color: TEXT_COLOR,
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  subtext: {
+    color: TEXT_COLOR,
+    fontSize: 14,
+    flexShrink: 1,
+  },
+  logoutText: {
+    marginTop: 20,
+    color: PRIMARY_COLOR,
+    fontSize: 20,
+    fontWeight: "bold",
+  },
 });

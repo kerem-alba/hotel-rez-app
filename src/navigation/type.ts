@@ -5,7 +5,7 @@ export type RootStackParamList = {
   Favorites: undefined;
   Reservations: undefined;
   Profile: undefined;
-  Main: { screen: "Hotels" };
+  Main: { screen: "Hotels" | "Favorites" | "Reservations" | "Profile" };
   Intro: undefined;
   Search: undefined;
   HotelDetails: { id: string };

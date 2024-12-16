@@ -3,19 +3,26 @@ import { View, Text, StyleSheet, TouchableOpacity, Modal, Button } from "react-n
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/type";
-import RoomSelectorModal from "../Modal/RoomSelectorModal";
 import { styles } from "./styles";
+import RoomGuestSelectorModal from "../Modals/RoomGuestSelectorModal";
 
 type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
 
 export default function SearchBox() {
   const navigation = useNavigation<NavigationProps>();
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [selectedGuests, setSelectedGuests] = useState("2 yetişkin, çocuksuz");
+  interface ModalData {
+    rooms: number;
+    roomDetails: { adults: number; children: number }[];
+  }
 
-  const openModal = () => setModalVisible(true);
-  const closeModal = () => setModalVisible(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [modalData, setModalData] = useState<any>(null);
+
+  const handleModalClose = (data: any) => {
+    setModalData(data);
+    setIsModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
@@ -23,34 +30,41 @@ export default function SearchBox() {
         <Text style={styles.title}>Gideceğin yer</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Search")}>
           <Text style={styles.textBold}>Barselona</Text>
-          {/* Search screende gelen prop */}
         </TouchableOpacity>
       </View>
       <View style={styles.horizontalDivider} />
       <View style={styles.row}>
         <View style={styles.column}>
           <Text style={styles.title}>Giriş</Text>
-          <TouchableOpacity style={styles.textContainer} onPress={openModal}>
+          <TouchableOpacity style={styles.textContainer} onPress={() => setIsModalVisible(true)}>
             <Text style={styles.textBold}>19 Ara 2024</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.divider} />
         <View style={styles.column}>
           <Text style={styles.title}>Çıkış</Text>
-          <TouchableOpacity style={styles.textContainer} onPress={openModal}>
+          <TouchableOpacity style={styles.textContainer} onPress={() => setIsModalVisible(true)}>
             <Text style={styles.textBold}>28 Ara 2024</Text>
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.horizontalDivider} />
-      <Text style={styles.title}>Şunun için 1 oda:</Text>
-      <TouchableOpacity style={styles.textContainer} onPress={openModal}>
-        <Text style={styles.textBold}>{selectedGuests}</Text>
+      <Text style={styles.title}>{modalData ? `Şunun için ${modalData.rooms} oda:` : "Şunun için 1 oda:"}</Text>
+      <TouchableOpacity style={styles.textContainer} onPress={() => setIsModalVisible(true)}>
+        <Text style={styles.textBold}>
+          {modalData
+            ? `${modalData.roomDetails.reduce((total: number, room: { adults: number; children: number }) => total + room.adults, 0)} yetişkin, ${
+                modalData.roomDetails.reduce((total: number, room: { adults: number; children: number }) => total + room.children, 0) > 0
+                  ? `${modalData.roomDetails.reduce((total: number, room: { adults: number; children: number }) => total + room.children, 0)} çocuk`
+                  : "çocuk yok"
+              }`
+            : "2 yetişkin, çocuk yok"}
+        </Text>
       </TouchableOpacity>
-
       <TouchableOpacity style={styles.button}>
         <Text style={styles.buttonText}>Ara</Text>
       </TouchableOpacity>
+      <RoomGuestSelectorModal visible={isModalVisible} onClose={handleModalClose} />;
     </View>
   );
 }
