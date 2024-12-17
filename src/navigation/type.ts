@@ -7,10 +7,10 @@ export type RootStackParamList = {
   Profile: undefined;
   Main: { screen: "Hotels" | "Favorites" | "Reservations" | "Profile" };
   Intro: undefined;
-  Search: undefined;
   HotelDetails: { id: string };
   Rooms: { data: Hotel };
-  SearchResults: { data: Hotel };
+  SearchResults: { city: string; startDate: string; endDate: string; rooms: number; roomDetails: { adults: number; children: number }[] };
   CityResults: { city: string };
   Register: undefined;
+  CitySelectorModal: undefined;
 };

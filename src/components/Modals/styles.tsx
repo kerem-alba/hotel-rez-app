@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { TEXT_CONTRAST, PRIMARY_COLOR, BACKGROUND_COLOR_LIGHTER, BACKGROUND_COLOR_DARKER } from "../../utils/colors";
+import { TEXT_CONTRAST, PRIMARY_COLOR, BACKGROUND_COLOR_LIGHTER, BACKGROUND_COLOR_DARKER, BACKGROUND_COLOR } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   overlay: {
@@ -29,6 +29,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
+    marginLeft: 10,
   },
   text: {
     fontSize: 16,
@@ -80,5 +81,47 @@ export const styles = StyleSheet.create({
     height: 2,
     backgroundColor: BACKGROUND_COLOR_DARKER,
     marginVertical: 10,
+  },
+  dateContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  dateText: {
+    fontSize: 16,
+    color: "#555",
+  },
+  searchContainer: {
+    flexDirection: "row",
+    backgroundColor: BACKGROUND_COLOR,
+    padding: 10,
+    margin: 10,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: BACKGROUND_COLOR_DARKER,
+    alignItems: "center",
+    gap: 10,
+  },
+  infoContainer: {
+    backgroundColor: BACKGROUND_COLOR,
+    margin: 10,
+    borderRadius: 10,
+  },
+  areasContainer: {
+    backgroundColor: BACKGROUND_COLOR,
+    margin: 5,
+    height: "40%",
+  },
+  renderItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    gap: 20,
   },
 });

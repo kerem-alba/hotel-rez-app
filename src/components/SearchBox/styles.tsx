@@ -1,12 +1,23 @@
 import { StyleSheet } from "react-native";
-import { TEXT_CONTRAST, BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, BACKGROUND_COLOR_CONTRAST } from "../../utils/colors";
+import {
+  TEXT_CONTRAST,
+  BACKGROUND_COLOR,
+  PRIMARY_COLOR,
+  SECONDARY_COLOR,
+  TEXT_COLOR,
+  BACKGROUND_COLOR_CONTRAST,
+  BACKGROUND_COLOR_LIGHTER,
+  BACKGROUND_COLOR_DARKER,
+} from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   container: {
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 15,
     backgroundColor: BACKGROUND_COLOR,
     margin: 14,
+    borderWidth: 1,
+    borderColor: BACKGROUND_COLOR_DARKER,
   },
   titleContainer: {
     marginBottom: 5,
@@ -33,14 +44,14 @@ export const styles = StyleSheet.create({
   },
   divider: {
     width: 1.5,
-    backgroundColor: TEXT_COLOR,
+    backgroundColor: BACKGROUND_COLOR_DARKER,
     marginHorizontal: 12,
     height: "100%",
   },
   horizontalDivider: {
     width: "100%",
     height: 2,
-    backgroundColor: TEXT_COLOR,
+    backgroundColor: BACKGROUND_COLOR_DARKER,
     marginVertical: 10,
   },
   button: {

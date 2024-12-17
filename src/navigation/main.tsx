@@ -15,7 +15,6 @@ import CityResultsScreen from "../screens/SearchResults/CityResultsScreen";
 import RegisterScreen from "../screens/Register/RegisterScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../utils/colors";
-import SearchScreen from "../screens/Search/SearchScreen";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -67,7 +66,6 @@ function RootNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false, animation: "none" }}>
       <Stack.Screen name="Intro" component={IntroductionScreen} />
       <Stack.Screen name="Main" component={BottomTabNavigation} />
-      <Stack.Screen name="Search" component={SearchScreen} />
       <Stack.Screen name="HotelDetails" component={HotelDetailsScreen} />
       <Stack.Screen name="Rooms" component={RoomsScreen} />
       <Stack.Screen name="SearchResults" component={SearchResultsScreen} />

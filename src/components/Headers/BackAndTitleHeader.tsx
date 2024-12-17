@@ -6,16 +6,20 @@ import { BACKGROUND_COLOR, TEXT_COLOR, BACKGROUND_COLOR_LIGHTER, BACKGROUND_COLO
 
 interface BackAndTitleHeaderProps {
   title: string;
+  text?: string;
 }
 
-export default function BackAndTitleHeader({ title }: BackAndTitleHeaderProps) {
+export default function BackAndTitleHeader({ title, text }: BackAndTitleHeaderProps) {
   const navigation = useNavigation();
   return (
     <View style={styles.header}>
       <Pressable onPress={() => navigation.goBack()}>
         <Ionicons name="arrow-back" size={32} color="BLACK" />
       </Pressable>
-      <Text style={styles.text}>{title}</Text>
+      <View style={styles.textContainer}>
+        <Text style={styles.title}>{title}</Text>
+        {text && <Text style={styles.text}>{text}</Text>}
+      </View>
     </View>
   );
 }
@@ -31,9 +35,19 @@ export const styles = StyleSheet.create({
     padding: 10,
     marginTop: 30,
   },
-  text: {
+  textContainer: {
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  title: {
     color: TEXT_COLOR,
     fontSize: 20,
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+  text: {
+    color: TEXT_COLOR,
+    fontSize: 14,
     marginLeft: 10,
   },
 });

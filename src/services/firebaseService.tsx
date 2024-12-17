@@ -73,33 +73,19 @@ export const fetchCities = async () => {
 export const fetchAreasByPrefix = async (prefix: string): Promise<{ id: string; city: string; country: string }[]> => {
   try {
     const result: { id: string; city: string; country: string }[] = [];
-    const cityQuery = query(collection(db, "hotels"), orderBy("address.city"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(4));
-    const citySnapshot = await getDocs(cityQuery);
+    const addedCities = new Set<string>();
 
-    citySnapshot.docs.forEach((doc) => {
+    const mixedQuery = query(collection(db, "hotels"), orderBy("address.city"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(6));
+
+    const snapshot = await getDocs(mixedQuery);
+
+    snapshot.docs.forEach((doc) => {
       const { city, country } = doc.data().address;
-      result.push({ id: doc.id, city, country });
+      if (!addedCities.has(city)) {
+        result.push({ id: doc.id, city, country });
+        addedCities.add(city);
+      }
     });
-
-    if (result.length < 3) {
-      const remainingLimit = 3 - result.length;
-      const countryQuery = query(
-        collection(db, "hotels"),
-        orderBy("address.country"),
-        startAt(prefix),
-        endAt(prefix + "\uf8ff"),
-        limit(remainingLimit)
-      );
-
-      const countrySnapshot = await getDocs(countryQuery);
-
-      countrySnapshot.docs.forEach((doc) => {
-        const { city, country } = doc.data().address;
-        if (!result.some((area) => area.id === doc.id)) {
-          result.push({ id: doc.id, city, country });
-        }
-      });
-    }
 
     return result;
   } catch (error) {
@@ -112,7 +98,7 @@ export const fetchHotelsByPrefix = async (prefix: string): Promise<{ id: string;
   try {
     const result: { id: string; name: string; city: string; country: string }[] = [];
 
-    const hotelQuery = query(collection(db, "hotels"), orderBy("name"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(4));
+    const hotelQuery = query(collection(db, "hotels"), orderBy("name"), startAt(prefix), endAt(prefix + "\uf8ff"), limit(3));
 
     const hotelSnapshot = await getDocs(hotelQuery);
 
