@@ -227,3 +227,81 @@ export const fetchHotelsByIds = async (ids: string[]): Promise<Hotel[]> => {
     throw error;
   }
 };
+
+export const fetchUserReservations = async (userId: string): Promise<string[]> => {
+  try {
+    const reservationsQuery = query(collection(db, "reservations"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(reservationsQuery);
+
+    const hotelIds = querySnapshot.docs.flatMap((doc) => {
+      const data = doc.data();
+      return data.hotels || [];
+    });
+
+    return hotelIds;
+  } catch (error) {
+    console.error("Error fetching user reservations:", error);
+    throw error;
+  }
+};
+
+export const addUserReservation = async (userId: string, hotelName: string) => {
+  try {
+    const { reservations, setReservations } = useUserStore.getState();
+
+    if (!hotelName) {
+      throw new Error("hotelName is undefined or null. Cannot add to reservations.");
+    }
+
+    const reservationsQuery = query(collection(db, "reservations"), where("userId", "==", userId));
+    const querySnapshot = await getDocs(reservationsQuery);
+
+    if (!querySnapshot.empty) {
+      const reservationDoc = querySnapshot.docs[0];
+      const reservationDocRef = doc(db, "reservations", reservationDoc.id);
+      await updateDoc(reservationDocRef, {
+        hotels: arrayUnion(hotelName),
+      });
+    } else {
+      await setDoc(doc(collection(db, "reservations")), {
+        userId,
+        hotels: [hotelName],
+      });
+    }
+
+    setReservations([...reservations, hotelName]);
+    console.log("Hotel added to reservations and Zustand updated.");
+  } catch (error) {
+    console.error("Error adding user reservation:", error);
+    throw error;
+  }
+};
+
+export const fetchHotelsByNames = async (names: string[]): Promise<Hotel[]> => {
+  if (names.length === 0) {
+    console.log("No hotel names provided. Returning an empty array.");
+    return [];
+  }
+  try {
+    const hotelsQuery = query(collection(db, "hotels"), where("name", "in", names));
+    const querySnapshot = await getDocs(hotelsQuery);
+    return querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    })) as Hotel[];
+  } catch (error) {
+    console.error("Error fetching hotels by names:", error);
+    throw error;
+  }
+};
+
+export const fetchHotelByName = async (name: string): Promise<Hotel> => {
+  try {
+    const hotelsQuery = query(collection(db, "hotels"), where("name", "==", name));
+    const querySnapshot = await getDocs(hotelsQuery);
+    return querySnapshot.docs[0].data() as Hotel;
+  } catch (error) {
+    console.error("Error fetching hotel by name:", error);
+    throw error;
+  }
+};

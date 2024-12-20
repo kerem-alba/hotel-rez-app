@@ -13,4 +13,5 @@ export type RootStackParamList = {
   CityResults: { city: string };
   Register: undefined;
   CitySelectorModal: undefined;
+  ReservationDetails: { hotelName: string; roomName: string };
 };

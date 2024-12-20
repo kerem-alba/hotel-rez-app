@@ -1,80 +1,66 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
-import { addHotel } from "../../services/firebaseService";
+import { View, Text, Button, ScrollView, Pressable } from "react-native";
+import React, { useEffect, useState } from "react";
+import { fetchHotelsByNames } from "../../services/firebaseService";
+import { Hotel } from "../../utils/types";
+import { useUserStore } from "../../stores/userStore";
+import HotelListVertical from "../../components/HotelListVertical/HotelListVertical";
+import { styles } from "./styles";
+import { LinearGradient } from "expo-linear-gradient";
+import { colors } from "../../utils/colors";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../navigation/type";
+import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 
-export default function ReservationScreen() {
-  const hotelData = {
-    name: "JW Marriott Hotel Ankara",
-    address: {
-      city: "Ankara",
-      cityImgUrl:
-        "https://images.unsplash.com/photo-1653108835062-4e8f9b3332b4?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      street: "Kızılırmak Mahallesi, Muhsin Yazıcıoğlu Cad. No:1",
-      latitude: "39.9205",
-      longitude: "32.8508",
-      country: "Türkiye",
-    },
-    description: "Ankara'nın en prestijli otellerinden biri olan JW Marriott, lüks bir konaklama ve benzersiz bir deneyim sunar.",
-    pricePerNight: 450,
-    rating: 4.8,
-    imageUrls: [
-      "https://images.trvl-media.com/lodging/5000000/4260000/4255900/4255837/7883a5f2.jpg?impolicy=resizecrop&rw=1200&ra=fit",
-      "https://images.trvl-media.com/lodging/5000000/4260000/4255900/4255837/9e0a9aa2.jpg?impolicy=resizecrop&rw=1200&ra=fit",
-    ],
-    rooms: [
-      {
-        roomName: "Deluxe Room",
-        bedQuantity: 1,
-        imageUrls: [
-          "https://images.trvl-media.com/lodging/5000000/4260000/4255900/4255837/a6959e13.jpg?impolicy=resizecrop&rw=1200&ra=fit",
-          "https://images.trvl-media.com/lodging/5000000/4260000/4255900/4255837/4d019593.jpg?impolicy=resizecrop&rw=1200&ra=fit",
-        ],
-      },
-      {
-        roomName: "Executive Suite",
-        bedQuantity: 2,
-        imageUrls: [
-          "https://images.trvl-media.com/lodging/5000000/4260000/4255900/4255837/8ab9b2d5.jpg?impolicy=resizecrop&rw=1200&ra=fit",
-          "https://images.trvl-media.com/lodging/5000000/4260000/4255900/4255837/a0306d3b.jpg?impolicy=resizecrop&rw=1200&ra=fit",
-        ],
-      },
-    ],
-  };
+type NavigationProps = StackNavigationProp<RootStackParamList, "Reservations">;
 
-  const handleAddHotel = async () => {
-    try {
-      const docId = await addHotel(hotelData);
-      Alert.alert("Başarılı", `Otel başarıyla eklendi! ID: ${docId}`);
-    } catch (error) {
-      Alert.alert("Hata", "Otel eklenirken bir hata oluştu.");
-    }
-  };
+export default function ReservationsScreen() {
+  const navigation = useNavigation<NavigationProps>();
+
+  const [hotels, setHotels] = useState<Hotel[]>([]);
+  const userId = useUserStore((state) => state.userId);
+  const reservations = useUserStore((state) => state.reservations);
+
+  useEffect(() => {
+    const fetchReservations = async () => {
+      if (!userId) return;
+      try {
+        const hotelData = await fetchHotelsByNames(reservations);
+        setHotels(hotelData);
+        console.log("hotelData", hotelData);
+      } catch (error) {
+        console.error("Error fetching reservations:", error);
+      }
+    };
+    fetchReservations();
+  }, [reservations, userId]);
+
+  if (!userId) {
+    return (
+      <LinearGradient style={styles.container} colors={[colors.PRIMARY_COLOR, colors.BACKGROUND_COLOR]} end={[0.5, 1]}>
+        <View style={styles.header}>
+          <Text style={styles.text}>Rezervasyonlar</Text>
+        </View>
+        <Ionicons name={"calendar-outline"} style={styles.icon} />
+        <View style={styles.noAccessContainer}>
+          <Text style={styles.noAccessText}>Bu sayfada rezervasyonlarınızı görebilir ve oteller hakkında detaylı bilgiye ulaşabilirsiniz.</Text>
+          <Text style={styles.noAccessText}>Rezervasyonlarınızı yönetmek için</Text>
+          <Pressable onPress={() => navigation.navigate("Profile")}>
+            <Text style={styles.loginText}>Giriş Yapın</Text>
+          </Pressable>
+        </View>
+      </LinearGradient>
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.addButton} onPress={handleAddHotel}>
-        <Text style={styles.addButtonText}>Otel Ekle</Text>
-      </TouchableOpacity>
-    </View>
+    <LinearGradient style={styles.container} colors={[colors.PRIMARY_COLOR, colors.BACKGROUND_COLOR]} end={[0.5, 1]}>
+      <View style={styles.header}>
+        <Text style={styles.text}>Rezervasyonlar</Text>
+      </View>
+      <View style={styles.hotels}>
+        <HotelListVertical hotels={hotels} />
+      </View>
+    </LinearGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#f5f5f5",
-  },
-  addButton: {
-    backgroundColor: "green",
-    padding: 15,
-    borderRadius: 8,
-    alignItems: "center",
-  },
-  addButtonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-});

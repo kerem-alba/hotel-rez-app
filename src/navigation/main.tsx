@@ -13,6 +13,7 @@ import RoomsScreen from "../screens/Rooms/RoomsScreen";
 import SearchResultsScreen from "../screens/SearchResults/SearchResultsScreen";
 import CityResultsScreen from "../screens/SearchResults/CityResultsScreen";
 import RegisterScreen from "../screens/Register/RegisterScreen";
+import ReservationDetailsScreen from "../screens/ReservationDetails/ReservationDetailsScreen";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../utils/colors";
 
@@ -71,6 +72,7 @@ function RootNavigator() {
       <Stack.Screen name="SearchResults" component={SearchResultsScreen} />
       <Stack.Screen name="CityResults" component={CityResultsScreen} />
       <Stack.Screen name="Register" component={RegisterScreen} />
+      <Stack.Screen name="ReservationDetails" component={ReservationDetailsScreen} />
     </Stack.Navigator>
   );
 }

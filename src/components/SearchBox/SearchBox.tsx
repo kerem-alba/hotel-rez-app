@@ -7,6 +7,7 @@ import { styles } from "./styles";
 import RoomGuestSelectorModal from "../Modals/RoomGuestSelectorModal";
 import DateSelectorModal from "../Modals/DateSelectorModal";
 import CitySelectorModal from "../Modals/CitySelectorModal";
+import { useReservationDetailsStore } from "../../stores/reservationDetailsStore";
 
 type NavigationProps = StackNavigationProp<RootStackParamList>;
 
@@ -16,6 +17,8 @@ interface SearchBoxProps {
 
 export default function SearchBox({ onClose }: SearchBoxProps) {
   const navigation = useNavigation<NavigationProps>();
+
+  const setReservationDetails = useReservationDetailsStore((state) => state.setReservationDetails);
 
   const [isRoomModalVisible, setIsRoomModalVisible] = useState(false);
   const [isDateModalVisible, setIsDateModalVisible] = useState(false);
@@ -40,9 +43,8 @@ export default function SearchBox({ onClose }: SearchBoxProps) {
   };
 
   const handleDateModalClose = (data: { startDate: Date; endDate: Date }) => {
-    const format = (date: Date) => date.toLocaleDateString("tr-TR", { day: "2-digit", month: "short", year: "numeric" });
-    setSelectedStartDate(format(data.startDate));
-    setSelectedEndDate(format(data.endDate));
+    setSelectedStartDate(formatDate(data.startDate));
+    setSelectedEndDate(formatDate(data.endDate));
     setIsDateModalVisible(false);
   };
 
@@ -54,6 +56,14 @@ export default function SearchBox({ onClose }: SearchBoxProps) {
   };
 
   const handleSearch = () => {
+    setReservationDetails({
+      city: selectedCity,
+      startDate: selectedStartDate,
+      endDate: selectedEndDate,
+      rooms: selectedRoomGuestData.rooms,
+      roomDetails: selectedRoomGuestData.roomDetails,
+    });
+
     navigation.navigate("SearchResults", {
       city: selectedCity,
       startDate: selectedStartDate,

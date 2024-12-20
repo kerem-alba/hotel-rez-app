@@ -41,7 +41,7 @@ export default function HotelCard({ hotel }: { hotel: Hotel }) {
           <View style={styles.bottom}>
             <Text style={styles.city}>{hotel.address.city}</Text>
             <Text style={styles.price}>$ {hotel.pricePerNight} </Text>
-            <Text style={styles.priceText}>/night</Text>
+            <Text style={styles.priceText}>/gece</Text>
           </View>
         </BlurView>
       </ImageBackground>
