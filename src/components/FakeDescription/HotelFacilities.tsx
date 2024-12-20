@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
-import { BACKGROUND_COLOR_LIGHTER, BACKGROUND_COLOR_DARKER } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 const generalFacilities = ["Ücretsiz kablosuz internet", "Otopark", "Restoran", "Bar", "24 saat açık resepsiyon", "Bahçe", "Teras"];
 const roomFacilities = ["Klima", "Televizyon", "Uydu yayını", "Mini bar", "Kasa", "Duş", "Saç kurutma makinesi"];
@@ -82,9 +82,9 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingVertical: 10,
     borderRadius: 10,
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    backgroundColor: colors.BACKGROUND_COLOR_LIGHTER,
     borderWidth: 1,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
   },
   titleContainer: {
     flexDirection: "row",

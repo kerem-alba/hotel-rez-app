@@ -1,13 +1,5 @@
 import { StyleSheet } from "react-native";
-import {
-  BACKGROUND_COLOR_CONTRAST,
-  BACKGROUND_COLOR_DARKER,
-  BACKGROUND_COLOR_LIGHTER,
-  PRIMARY_COLOR,
-  SECONDARY_COLOR,
-  TEXT_COLOR,
-  TEXT_CONTRAST,
-} from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -18,14 +10,14 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 10,
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    backgroundColor: colors.BACKGROUND_COLOR_LIGHTER,
     borderWidth: 2,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
     padding: 10,
     marginTop: 40,
   },
   text: {
-    color: TEXT_COLOR,
+    color: colors.TEXT_COLOR,
     fontSize: 20,
     marginLeft: 10,
   },
@@ -34,7 +26,7 @@ export const styles = StyleSheet.create({
     paddingBottom: 140,
   },
   icon: {
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
     alignSelf: "center",
     marginTop: 60,
     fontSize: 120,
@@ -48,13 +40,13 @@ export const styles = StyleSheet.create({
 
   noAccessText: {
     fontSize: 16,
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
     textAlign: "center",
     marginTop: 20,
   },
 
   loginText: {
-    color: SECONDARY_COLOR,
+    color: colors.SECONDARY_COLOR,
     fontWeight: "bold",
     fontSize: 18,
     textAlign: "center",

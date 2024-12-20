@@ -1,7 +1,7 @@
-import { View, Modal, StyleSheet, TouchableOpacity, Text, Pressable, Dimensions } from "react-native";
+import { View, Modal, StyleSheet, Pressable } from "react-native";
 import React from "react";
 import SearchBox from "../SearchBox/SearchBox";
-import { BACKGROUND_COLOR, BACKGROUND_COLOR_DARKER, BACKGROUND_COLOR_LIGHTER } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 interface SearchBoxModalProps {
   visible: boolean;
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   content: {
     width: "100%",
     padding: 2,
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    backgroundColor: colors.BACKGROUND_COLOR_LIGHTER,
     borderTopEndRadius: 20,
     borderTopStartRadius: 20,
   },

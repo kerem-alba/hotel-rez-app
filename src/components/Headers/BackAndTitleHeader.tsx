@@ -2,7 +2,7 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { BACKGROUND_COLOR, TEXT_COLOR, BACKGROUND_COLOR_LIGHTER, BACKGROUND_COLOR_DARKER } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 interface BackAndTitleHeaderProps {
   title: string;
@@ -29,9 +29,9 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 10,
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    backgroundColor: colors.BACKGROUND_COLOR_LIGHTER,
     borderWidth: 1,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
     padding: 10,
     marginTop: 30,
   },
@@ -40,13 +40,13 @@ export const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   title: {
-    color: TEXT_COLOR,
+    color: colors.TEXT_COLOR,
     fontSize: 20,
     fontWeight: "bold",
     marginLeft: 10,
   },
   text: {
-    color: TEXT_COLOR,
+    color: colors.TEXT_COLOR,
     fontSize: 14,
     marginLeft: 10,
   },

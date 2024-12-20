@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { TEXT_CONTRAST, PRIMARY_COLOR, BACKGROUND_COLOR_LIGHTER, BACKGROUND_COLOR_DARKER, BACKGROUND_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   overlay: {
@@ -9,12 +9,12 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
   modalContainer: {
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    backgroundColor: colors.BACKGROUND_COLOR_LIGHTER,
     padding: 20,
     width: "80%",
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
     maxHeight: "80%",
   },
   background: {
@@ -55,14 +55,14 @@ export const styles = StyleSheet.create({
     marginBottom: 5,
   },
   applyButton: {
-    backgroundColor: PRIMARY_COLOR,
+    backgroundColor: colors.PRIMARY_COLOR,
     paddingVertical: 10,
     paddingHorizontal: 25,
     borderRadius: 5,
     alignSelf: "flex-end",
   },
   buttonText: {
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
     fontSize: 16,
     fontWeight: "bold",
   },
@@ -79,7 +79,7 @@ export const styles = StyleSheet.create({
   horizontalDivider: {
     width: "100%",
     height: 2,
-    backgroundColor: BACKGROUND_COLOR_DARKER,
+    backgroundColor: colors.BACKGROUND_COLOR_DARKER,
     marginVertical: 10,
   },
   dateContainer: {
@@ -98,22 +98,22 @@ export const styles = StyleSheet.create({
   },
   searchContainer: {
     flexDirection: "row",
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     padding: 10,
     margin: 10,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
     alignItems: "center",
     gap: 10,
   },
   infoContainer: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     margin: 10,
     borderRadius: 10,
   },
   areasContainer: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     margin: 5,
     height: "40%",
   },

@@ -7,7 +7,7 @@ import { useUserStore } from "../../stores/userStore";
 import HotelListVertical from "../../components/HotelListVertical/HotelListVertical";
 import { styles } from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
-import { PRIMARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/type";
 import { useNavigation } from "@react-navigation/native";
@@ -37,7 +37,7 @@ export default function FavoritesScreen() {
 
   if (!userId) {
     return (
-      <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
+      <LinearGradient style={styles.container} colors={[colors.PRIMARY_COLOR, colors.BACKGROUND_COLOR]} end={[0.5, 1]}>
         <View style={styles.header}>
           <Text style={styles.text}>Favori oteller</Text>
         </View>
@@ -56,7 +56,7 @@ export default function FavoritesScreen() {
   }
 
   return (
-    <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
+    <LinearGradient style={styles.container} colors={[colors.PRIMARY_COLOR, colors.BACKGROUND_COLOR]} end={[0.5, 1]}>
       <View style={styles.header}>
         <Text style={styles.text}>Favori otellerin</Text>
       </View>

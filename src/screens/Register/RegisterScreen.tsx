@@ -1,11 +1,11 @@
-import { View, Text, Image, TouchableOpacity, Pressable } from "react-native";
+import { View } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/type";
 import { styles } from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
-import { PRIMARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 import { Formik } from "formik";
 import CompanyName from "../../components/CompanyName/CompanyName";
 import Input from "../../components/Input/Input";
@@ -31,7 +31,7 @@ export default function RegisterScreen() {
   };
 
   return (
-    <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
+    <LinearGradient style={styles.container} colors={[colors.PRIMARY_COLOR, colors.BACKGROUND_COLOR]} end={[0.5, 1]}>
       <BackAndTitleHeader title="Kayıt ol" />
 
       <View style={styles.formContainer}>

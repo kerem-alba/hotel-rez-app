@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, TextInput, View, NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
+import { Pressable, Text, TextInput, View, NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
 import React, { useState } from "react";
 import { styles } from "./styles";
 import Feather from "@expo/vector-icons/Feather";
@@ -27,8 +27,8 @@ export default function PasswordInput(props: Props) {
           secureTextEntry={secureTextEntry}
           onBlur={props.onBlur}
         ></TextInput>
-        <Pressable style={styles.icon} onPress={updateSecureTextEntry}>
-          <Feather name={secureTextEntry ? "eye-off" : "eye"} size={24} color="black" />
+        <Pressable style={styles.iconContainer} onPress={updateSecureTextEntry}>
+          <Feather name={secureTextEntry ? "eye-off" : "eye"} style={styles.icon} />
         </Pressable>
       </View>
       {props.errorText && <Text style={styles.errorText}>{props.errorText}</Text>}

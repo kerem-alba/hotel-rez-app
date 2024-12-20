@@ -1,6 +1,6 @@
 import { View, Text, Modal, Pressable, TouchableOpacity, ScrollView, Switch } from "react-native";
 import React, { useState } from "react";
-import { BACKGROUND_COLOR, PRIMARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 import { styles } from "./styles";
 
 interface ModalProps {
@@ -112,7 +112,7 @@ export default function RoomGuestSelectorModal({ visible, onClose }: ModalProps)
                 value={isPetFriendly}
                 onValueChange={toggleSwitch}
                 thumbColor={isPetFriendly ? "white" : "gray"}
-                trackColor={{ false: BACKGROUND_COLOR, true: PRIMARY_COLOR }}
+                trackColor={{ false: colors.BACKGROUND_COLOR, true: colors.PRIMARY_COLOR }}
               />
             </View>
 

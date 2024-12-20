@@ -7,13 +7,12 @@ import { RootStackParamList } from "../../navigation/type";
 import { styles } from "./styles";
 import { City } from "../../utils/types";
 
-type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
+type NavigationProps = StackNavigationProp<RootStackParamList>;
 
 export default function CityCard({ city }: { city: City }) {
   const navigation = useNavigation<NavigationProps>();
   const handlePress = () => {
     navigation.navigate("CityResults", { city: city.city });
-    console.log("CityCard pressed");
   };
 
   return (

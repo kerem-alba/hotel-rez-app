@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { BACKGROUND_COLOR, BACKGROUND_COLOR_DARKER, BACKGROUND_COLOR_LIGHTER, PRIMARY_COLOR, SECONDARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,19 +11,26 @@ export const styles = StyleSheet.create({
   },
   input: {
     padding: 10,
-    backgroundColor: BACKGROUND_COLOR,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    backgroundColor: colors.BACKGROUND_COLOR,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
     borderWidth: 1,
     borderRadius: 5,
     width: "100%",
+    color: colors.TEXT_COLOR,
   },
   passwordContainer: {
     flexDirection: "row",
     alignItems: "center",
   },
-  icon: {
+
+  iconContainer: {
     position: "absolute",
     right: 10,
+  },
+
+  icon: {
+    color: colors.TEXT_COLOR,
+    fontSize: 20,
   },
 
   errorText: {

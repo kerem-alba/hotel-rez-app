@@ -6,7 +6,7 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../navigation/type";
 import { styles } from "./styles";
 import { LinearGradient } from "expo-linear-gradient";
-import { PRIMARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 import { Formik } from "formik";
 import CompanyName from "../../components/CompanyName/CompanyName";
 import Input from "../../components/Input/Input";
@@ -85,7 +85,7 @@ export default function ProfileScreen() {
 
   if (userId) {
     return (
-      <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
+      <LinearGradient style={styles.container} colors={[colors.PRIMARY_COLOR, colors.BACKGROUND_COLOR]} end={[0.5, 1]}>
         <View style={styles.noAccessContainer}>
           <View style={styles.topContainer}>
             <Ionicons name="person-circle-outline" style={styles.topIcon} />
@@ -135,7 +135,7 @@ export default function ProfileScreen() {
     );
   }
   return (
-    <LinearGradient style={styles.container} colors={[PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
+    <LinearGradient style={styles.container} colors={[colors.PRIMARY_COLOR, "transparent"]} end={[0.5, 1]}>
       <View style={styles.formContainer}>
         <CompanyName />
         <Formik

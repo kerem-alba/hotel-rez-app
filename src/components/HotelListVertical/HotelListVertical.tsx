@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import { styles } from "./styles";
 import { Hotel } from "../../utils/types";
 import HotelCardWide from "../HotelCardWide/HotelCardWide";

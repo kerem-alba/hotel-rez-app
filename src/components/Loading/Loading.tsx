@@ -1,6 +1,6 @@
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { BACKGROUND_COLOR, SECONDARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 const Loading = () => {
   return (
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20,
-    backgroundColor: SECONDARY_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     justifyContent: "center",
     alignItems: "center",
   },

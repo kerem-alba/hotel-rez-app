@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, FlatList } from "react-native";
 import { styles } from "./styles";
 import CityCard from "../CityCard/CityCard";
 import { City } from "../../utils/types";

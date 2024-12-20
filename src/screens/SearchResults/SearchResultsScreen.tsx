@@ -1,7 +1,7 @@
-import { Pressable, View, Modal } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import { Pressable, View } from "react-native";
+import React, { useState } from "react";
 import { fetchHotelsByCity } from "../../services/firebaseService";
-import { RouteProp, useFocusEffect, useNavigationState, useRoute } from "@react-navigation/native";
+import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigation/type";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "../../components/Loading/Loading";

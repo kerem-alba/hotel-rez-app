@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
-import { PRIMARY_COLOR, SECONDARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 export default function CompanyName() {
   return (
@@ -24,16 +24,13 @@ const styles = StyleSheet.create({
 
   headerOne: {
     fontSize: 48,
-    color: PRIMARY_COLOR,
-    textShadowColor: SECONDARY_COLOR,
-    textShadowOffset: { width: -2, height: 2 },
-    textShadowRadius: 2,
+    color: colors.PRIMARY_COLOR,
+    textShadowColor: colors.SECONDARY_COLOR,
+    textShadowOffset: { width: -1, height: 1 },
+    textShadowRadius: 1,
   },
   headerTwo: {
     fontSize: 48,
-    color: SECONDARY_COLOR,
-    textShadowColor: SECONDARY_COLOR,
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
+    color: colors.SECONDARY_COLOR,
   },
 });

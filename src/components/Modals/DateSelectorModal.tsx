@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, Modal, Pressable, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Modal, Pressable, TouchableOpacity } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { styles } from "./styles";
 

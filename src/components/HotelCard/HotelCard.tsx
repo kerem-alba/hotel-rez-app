@@ -10,7 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useUserStore } from "../../stores/userStore";
 import { handlePressFavorite } from "../../services/favoriteService";
 
-type NavigationProps = StackNavigationProp<RootStackParamList, "Search">;
+type NavigationProps = StackNavigationProp<RootStackParamList>;
 
 export default function HotelCard({ hotel }: { hotel: Hotel }) {
   const navigation = useNavigation<NavigationProps>();

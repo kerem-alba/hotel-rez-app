@@ -8,7 +8,7 @@ import { fetchHotels, fetchCities } from "../../services/firebaseService";
 import { Hotel, City } from "../../utils/types";
 import CityList from "../../components/CityList/CityList";
 import { LinearGradient } from "expo-linear-gradient";
-import { PRIMARY_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 import CompanyName from "../../components/CompanyName/CompanyName";
 
 export default function HotelsScreen() {
@@ -39,7 +39,7 @@ export default function HotelsScreen() {
   return (
     <ScrollView style={styles.container}>
       <StatusBar style="dark" />
-      <LinearGradient style={styles.container} colors={["transparent", PRIMARY_COLOR]} end={[0.5, 1]}>
+      <LinearGradient style={styles.container} colors={[colors.BACKGROUND_COLOR, colors.PRIMARY_COLOR]} end={[0.5, 1]}>
         <CompanyName />
         <SearchBox />
         <HotelList hotels={hotels} />

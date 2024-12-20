@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { BACKGROUND_COLOR, BACKGROUND_COLOR_DARKER, BACKGROUND_COLOR_LIGHTER, TEXT_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   overlay: {
@@ -18,43 +18,43 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: BACKGROUND_COLOR_LIGHTER,
+    backgroundColor: colors.BACKGROUND_COLOR_LIGHTER,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
     width: "95%",
     maxHeight: "90%",
   },
   horizontalDivider: {
     width: "100%",
     height: 2,
-    backgroundColor: BACKGROUND_COLOR_DARKER,
+    backgroundColor: colors.BACKGROUND_COLOR_DARKER,
     marginVertical: 10,
   },
   searchContainer: {
     flexDirection: "row",
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     padding: 10,
     margin: 10,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: BACKGROUND_COLOR_DARKER,
+    borderColor: colors.BACKGROUND_COLOR_DARKER,
     alignItems: "center",
     gap: 10,
   },
   infoContainer: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     margin: 10,
     flex: 1,
     borderRadius: 10,
   },
   areasContainer: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     margin: 5,
     flex: 1,
   },
   hotelsContainer: {
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     margin: 10,
     flex: 1,
   },
@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
   textBold: {
     fontSize: 20,
     fontWeight: "bold",
-    color: TEXT_COLOR,
+    color: colors.TEXT_COLOR,
     margin: 10,
   },
 });

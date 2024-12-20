@@ -1,15 +1,15 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../../utils/colors";
+import { StyleSheet } from "react-native";
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: BACKGROUND_COLOR,
+    backgroundColor: colors.BACKGROUND_COLOR,
     marginBottom: -25,
   },
   text: {
     fontSize: 12,
     fontWeight: "bold",
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
   },
 });

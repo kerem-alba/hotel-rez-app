@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { PRIMARY_COLOR, TEXT_COLOR } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 export const styles = StyleSheet.create({
   button: {
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     elevation: 5,
   },
   buttonText: {
-    color: TEXT_COLOR,
+    color: colors.TEXT_COLOR,
     fontFamily: "HostGrotesk-Bold",
     fontSize: 16,
     textAlign: "center",

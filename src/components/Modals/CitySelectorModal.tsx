@@ -1,4 +1,4 @@
-import { View, Text, TextInput, ScrollView, Pressable, FlatList, Modal } from "react-native";
+import { View, Text, TextInput, Pressable, FlatList, Modal } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";

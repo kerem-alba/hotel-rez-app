@@ -1,9 +1,10 @@
-import { View, Text, FlatList, Image, Pressable } from "react-native";
+import { View, Text, FlatList, Image } from "react-native";
 import React from "react";
 import { styles } from "./styles";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { RootStackParamList } from "../../navigation/type";
 import BackAndTitleHeader from "../../components/Headers/BackAndTitleHeader";
+import Button from "../../components/Button/Button";
 
 type RouteProps = RouteProp<RootStackParamList, "Rooms">;
 
@@ -32,9 +33,9 @@ export default function RoomsScreen() {
               <Text style={styles.summary}>1 Gece, 1 Oda, 2 Yetişkin için toplam</Text>
               <Text style={styles.price}>{data.pricePerNight} $</Text>
             </View>
-            <Pressable>
-              <Text style={styles.reservationButton}>Rezervasyon Yap</Text>
-            </Pressable>
+            <View style={styles.buttonContainer}>
+              <Button text="Rezervasyon Yap" onPress={() => {}} />
+            </View>
           </View>
         )}
       />

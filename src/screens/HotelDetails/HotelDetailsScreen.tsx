@@ -13,6 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 import HotelFacilities from "../../components/FakeDescription/HotelFacilities";
 import { useUserStore } from "../../stores/userStore";
 import { handlePressFavorite } from "../../services/favoriteService";
+import Button from "../../components/Button/Button";
 
 type RouteProps = RouteProp<RootStackParamList, "HotelDetails">;
 type NavigationProps = StackNavigationProp<RootStackParamList, "HotelDetails">;
@@ -100,8 +101,8 @@ export default function HotelDetailsScreen() {
                 initialRegion={{
                   latitude: parseFloat(data?.address.latitude || "0"),
                   longitude: parseFloat(data?.address.longitude || "0"),
-                  latitudeDelta: 0.1,
-                  longitudeDelta: 0.1,
+                  latitudeDelta: 0.01,
+                  longitudeDelta: 0.01,
                 }}
               >
                 <Marker
@@ -127,12 +128,13 @@ export default function HotelDetailsScreen() {
 
             <HotelFacilities />
           </ScrollView>
+
           <View style={styles.footer}>
             <Text style={styles.priceText}>$ {data?.pricePerNight}</Text>
             <Text style={styles.priceSubText}>başlayan fiyatlarla</Text>
-            <Pressable style={styles.selectRoomButton} onPress={handlePress}>
-              <Text style={styles.bookText}>Oda Seçimi</Text>
-            </Pressable>
+            <View style={styles.buttonContainer}>
+              <Button text="Oda Seçimi" onPress={handlePress} />
+            </View>
           </View>
         </>
       )}

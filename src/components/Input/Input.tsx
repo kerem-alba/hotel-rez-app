@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View, NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
+import { Text, TextInput, View, NativeSyntheticEvent, TextInputFocusEventData } from "react-native";
 import React from "react";
 import { styles } from "./styles";
 interface Props {

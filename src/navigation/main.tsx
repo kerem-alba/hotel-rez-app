@@ -14,7 +14,7 @@ import SearchResultsScreen from "../screens/SearchResults/SearchResultsScreen";
 import CityResultsScreen from "../screens/SearchResults/CityResultsScreen";
 import RegisterScreen from "../screens/Register/RegisterScreen";
 import { Ionicons } from "@expo/vector-icons";
-import { BACKGROUND_COLOR, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, TEXT_CONTRAST } from "../utils/colors";
+import { colors } from "../utils/colors";
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -24,11 +24,11 @@ function BottomTabNavigation() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: BACKGROUND_COLOR,
+          backgroundColor: colors.BACKGROUND_COLOR,
           borderTopLeftRadius: 20,
           borderTopRightRadius: 20,
           borderWidth: 0.1,
-          borderRadiusColor: SECONDARY_COLOR,
+          borderRadiusColor: colors.SECONDARY_COLOR,
           opacity: 0.96,
           position: "absolute",
           elevation: 2,
@@ -49,8 +49,8 @@ function BottomTabNavigation() {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: PRIMARY_COLOR,
-        tabBarInactiveTintColor: SECONDARY_COLOR,
+        tabBarActiveTintColor: colors.PRIMARY_COLOR,
+        tabBarInactiveTintColor: colors.SECONDARY_COLOR,
       })}
     >
       <Tab.Screen name="Hotels" component={HotelsScreen} options={{ tabBarLabel: "Oteller" }} />

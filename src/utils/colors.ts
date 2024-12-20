@@ -1,9 +1,37 @@
-export const PRIMARY_COLOR = "#00ADB5"; //lightblue
-export const SECONDARY_COLOR = "#393E46"; //darkgray
-export const BACKGROUND_COLOR = "#EEEEEE"; //white
-export const BACKGROUND_COLOR_LIGHTER = "#FCFCFC"; //white
-export const BACKGROUND_COLOR_DARKER = "#CECECE"; //white
-export const BACKGROUND_COLOR_CONTRAST = "#393E46"; //darkgray
-export const TEXT_COLOR = "#222831"; //black
-export const TEXT_CONTRAST = "#EEEEEE"; //white
-export const GREEN = "#228B22"; //green
+export let colors = {
+  PRIMARY_COLOR: "#00ADB5",
+  SECONDARY_COLOR: "#393E46",
+  BACKGROUND_COLOR: "#EEEEEE",
+  BACKGROUND_COLOR_LIGHTER: "#FCFCFC",
+  BACKGROUND_COLOR_DARKER: "#CECECE",
+  BACKGROUND_COLOR_CONTRAST: "#393E46",
+  TEXT_COLOR: "#222831",
+  TEXT_CONTRAST: "#EEEEEE",
+  GREEN: "#228B22",
+};
+
+export const setDarkMode = (isDarkMode: boolean) => {
+  colors = !isDarkMode
+    ? {
+        PRIMARY_COLOR: "#101010",
+        SECONDARY_COLOR: "#6B778D",
+        BACKGROUND_COLOR: "#191E26",
+        BACKGROUND_COLOR_LIGHTER: "#26282B",
+        BACKGROUND_COLOR_DARKER: "#393E46",
+        BACKGROUND_COLOR_CONTRAST: "#393E46",
+        TEXT_COLOR: "#CBC8B3",
+        TEXT_CONTRAST: "#EEEEEE",
+        GREEN: "#228B22",
+      }
+    : {
+        PRIMARY_COLOR: "#00ADB5",
+        SECONDARY_COLOR: "#393E46",
+        BACKGROUND_COLOR: "#EEEEEE",
+        BACKGROUND_COLOR_LIGHTER: "#FCFCFC",
+        BACKGROUND_COLOR_DARKER: "#CECECE",
+        BACKGROUND_COLOR_CONTRAST: "#393E46",
+        TEXT_COLOR: "#222831",
+        TEXT_CONTRAST: "#EEEEEE",
+        GREEN: "#228B22",
+      };
+};

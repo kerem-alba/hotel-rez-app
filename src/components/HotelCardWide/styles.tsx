@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { BACKGROUND_COLOR, BACKGROUND_COLOR_CONTRAST, PRIMARY_COLOR, SECONDARY_COLOR, TEXT_COLOR, GREEN, TEXT_CONTRAST } from "../../utils/colors";
+import { colors } from "../../utils/colors";
 
 const { width } = Dimensions.get("window");
 
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   textOverlay: {
     height: 58,
-    backgroundColor: BACKGROUND_COLOR_CONTRAST,
+    backgroundColor: colors.BACKGROUND_COLOR_CONTRAST,
     opacity: 0.7,
     paddingLeft: 50,
     top: 142,
@@ -30,7 +30,7 @@ export const styles = StyleSheet.create({
   hotelName: {
     fontSize: 14,
     fontWeight: "bold",
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
   },
   bottom: {
     flexDirection: "row",
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   },
   city: {
     fontSize: 14,
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
     marginTop: -2,
     width: 100,
   },
@@ -47,10 +47,10 @@ export const styles = StyleSheet.create({
     paddingTop: 5,
     fontSize: 17,
     fontWeight: "bold",
-    color: PRIMARY_COLOR,
+    color: colors.PRIMARY_COLOR,
   },
   priceText: {
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
     fontSize: 12,
     position: "absolute",
     left: width * 0.7,
@@ -64,7 +64,7 @@ export const styles = StyleSheet.create({
 
   ratingText: {
     position: "absolute",
-    color: TEXT_CONTRAST,
+    color: colors.TEXT_CONTRAST,
     fontSize: 16,
     fontWeight: "bold",
     top: 10,
@@ -81,6 +81,6 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
   },
   bookmark: {
-    color: GREEN,
+    color: colors.GREEN,
   },
 });
